@@ -21,8 +21,8 @@ exports.BusStop = class BusStop{
         }
 
         //handle substops
-        if(jsonStop.indicator){
-            this.name = this.name + " " + indicator;
+        if(jsonStop.hasOwnProperty('indicator')){
+            this.name = this.name + " " + jsonStop.indicator;
         }
     }
 
