@@ -35,7 +35,7 @@ exports.ApiRequests = class ApiRequests {
     static async busStopsNearPostcode(postcode, numberOfStops = 2, maxRadius = 10000, radiusIncrement = 200){
         const postcodeLocation = await this.longLatFromPostcode(postcode);
         
-        const argStopType = "?stopTypes=NaptanOnstreetBusCoachStopPair";
+        const argStopType = "?stopTypes=NaptanPublicBusCoachTram";
         const argLongLat  = "&lon=" + String(postcodeLocation.longitude) + "&lat=" + String(postcodeLocation.latitude);
 
         let busStopCount = 0;
@@ -61,6 +61,7 @@ exports.ApiRequests = class ApiRequests {
             busStopIDs.push(busStop.id);
         });
         
+        //return busStopData.stopPoints.slice(0,numberOfStops);
         return busStopIDs;
     }
 
