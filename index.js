@@ -1,8 +1,11 @@
 const BusStop = require('./BusStop').BusStop;
 
 async function run(){
-    const busStop = await BusStop.newFromId("490008660N");
-    busStop.printArrivals();
+    const busStops = await BusStop.closestToPostcode("w2 3lp");
+    console.log(busStops);
+    for(busStop of busStops){
+        busStop.printArrivals();
+    }
 }
 
 run();
