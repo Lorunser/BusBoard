@@ -19,6 +19,11 @@ exports.BusStop = class BusStop{
             const value = jsonStop[apiKey];
             this[key] = value;
         }
+
+        //handle substops
+        if(jsonStop.indicator){
+            this.name = this.name + " " + indicator;
+        }
     }
 
     assignNextBuses(jsonArrivals){

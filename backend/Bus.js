@@ -21,7 +21,7 @@ exports.Bus = class Bus{
     }
 
     stringify(){
-        const rep = this.number + " arriving in " + this.minutesToArrival.toFixed(0) + " minutes";
+        const rep = this.number + " to " + this.destination + " in " + this.minutesToArrival.toFixed(0) + " minutes";
         return rep;
     }
 }
