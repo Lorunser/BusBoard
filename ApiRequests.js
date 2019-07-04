@@ -28,4 +28,22 @@ exports.ApiRequests = class ApiRequests {
         }
         return postcodeLocation;
     }
+    static async busStopsNearPostcode(postcode, withinRadius = 1000, numberOfStops = 2){
+        const postcodeLocation = await this.longLatFromPostcode(postcode);
+        
+        const argStopType = "?stopTypes=NaptanOnstreetBusCoachStopPair";
+        const argRadius   = "&radius=" + String(withinRadius);
+        const argLongLat  = "&lon=" + String(postcodeLocation.longitude) + "&lat=" + String(postcodeLocation.latitude);
+        
+        const requestUrl  = stopPointURL + argStopType + argRadius + argLongLat;
+        const busStopData = await this.request(requestUrl);
+
+        const busStopIDs = [];
+        //console.log(busStopData);
+        busStopData.stopPoints.slice(0,numberOfStops).forEach(function(busStop) {
+            busStopIDs.push(busStop.children[0].id);
+        });
+        return busStopIDs;
+    }
+
 }
