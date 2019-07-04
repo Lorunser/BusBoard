@@ -28,21 +28,35 @@ exports.ApiRequests = class ApiRequests {
         }
         return postcodeLocation;
     }
-    static async busStopsNearPostcode(postcode, withinRadius = 1000, numberOfStops = 2){
+    static async busStopsNearPostcode(postcode, numberOfStops = 2, maxRadius = 10000, radiusIncrement = 200){
         const postcodeLocation = await this.longLatFromPostcode(postcode);
         
         const argStopType = "?stopTypes=NaptanOnstreetBusCoachStopPair";
-        const argRadius   = "&radius=" + String(withinRadius);
         const argLongLat  = "&lon=" + String(postcodeLocation.longitude) + "&lat=" + String(postcodeLocation.latitude);
-        
-        const requestUrl  = stopPointURL + argStopType + argRadius + argLongLat;
-        const busStopData = await this.request(requestUrl);
+
+        let busStopCount = 0;
+        let withinRadius = 0;
+        let busStopData  = '';
+
+        while (busStopCount < numberOfStops) {
+            withinRadius += radiusIncrement;
+
+            if (withinRadius > maxRadius) {
+                console.log("===Max radius exceeded before " + String(numberOfStops) + " found===");
+                break;
+            }
+            const argRadius   = "&radius=" + String(withinRadius);
+            const requestUrl  = stopPointURL + argStopType + argRadius + argLongLat;
+            
+            busStopData = await this.request(requestUrl);
+            busStopCount = busStopData.stopPoints.length;
+        }
 
         const busStopIDs = [];
-        //console.log(busStopData);
         busStopData.stopPoints.slice(0,numberOfStops).forEach(function(busStop) {
             busStopIDs.push(busStop.children[0].id);
         });
+        
         return busStopIDs;
     }
 
