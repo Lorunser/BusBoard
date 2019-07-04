@@ -1,4 +1,3 @@
-
 exports.Bus = class Bus{
 
     constructor(jsonBus){

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const BusStop = require('./BusStop').BusStop;
+const BusStop = require('./backend/BusStop').BusStop;
 
 app.get('/test', (req, res) => res.send('Hello World!'));
 
@@ -10,10 +10,10 @@ app.get('/departureBoards/:postcode', async (request, response) => {
 
     try{
         const closestBusStops = await BusStop.stopsClosestToPostcode(postcode);
-        response.send(closestBusStops);
+        response.json(closestBusStops);
     }
     catch{
-        response.send("Error 404: cannot find stations for postcode " + postcode);
+        response.sendStatus(404);
     }
 });
 
