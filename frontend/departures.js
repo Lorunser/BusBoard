@@ -1,6 +1,6 @@
 var xhttp = new XMLHttpRequest();
  
-xhttp.open('GET', '/departureBoards?postcode=nw51tl', true);
+xhttp.open('GET', '/departureBoards/nw51tl', true);
 xhttp.setRequestHeader('Content-Type', 'application/json');
  
 xhttp.onload = function() {
