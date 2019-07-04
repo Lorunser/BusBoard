@@ -1,4 +1,8 @@
-const ApiRequests = require('./ApiRequests').ApiRequests;
+const BusStop = require('./BusStop').BusStop;
 
-const response = ApiRequests.busStopFromId("490008660N");
+async function run(){
+    const busStop = await BusStop.newFromId("490008660N");
+    busStop.printArrivals();
+}
 
+run();
