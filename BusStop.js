@@ -2,8 +2,13 @@ const ApiRequests = require('./ApiRequests').ApiRequests;
 const Bus = require('./Bus').Bus;
 
 exports.BusStop = class BusStop{
-    constructor(jsonStop, id){
+    constructor(id, jsonStop, jsonArrivals){
         this.id = id;
+        this.assignProps(jsonStop);
+        this.assignNextBuses(jsonArrivals);
+    }
+
+    assignProps(jsonStop){
         const translator = {
             "name": "commonName"
         };
@@ -15,30 +20,35 @@ exports.BusStop = class BusStop{
         }
     }
 
-    static async newFromId(id){
-        const jsonStop = await ApiRequests.busStopFromId(id);
-        let busStop = new this(jsonStop, id);
-        busStop.nextBuses = await busStop.getNextBuses();
-
-        return busStop;
-    }
-
-    async getNextBuses(){
-        const jsonArrivals = await ApiRequests.arrivalPredictions(this.id);
-        let nextBuses = [];
+    assignNextBuses(jsonArrivals){
+        this.nextBuses = [];
 
         for(let i = 0; i < 5 && i < jsonArrivals.length; i++){
             const arrival = jsonArrivals[i];
             let nextBus = new Bus(arrival);
-            nextBuses.push(nextBus);
+            this.nextBuses.push(nextBus);
         }
-
-        return nextBuses;
     }
 
     printArrivals(){
+        console.log("Arrivals for " + this.name);
+        console.log("=========================");
         for(const bus of this.nextBuses){
             console.log(bus.stringify());
         }
+    }
+
+    static async newFromId(id){
+        //begin requests
+        let jsonStop = ApiRequests.busStopFromId(id);
+        let jsonArrivals = ApiRequests.arrivalPredictions(id);
+
+        //wait for completion
+        jsonStop = await jsonStop;
+        jsonArrivals = await jsonArrivals;
+
+        //create object
+        let busStop = new this(id, jsonStop, jsonArrivals);
+        return busStop;
     }
 }
