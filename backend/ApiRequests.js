@@ -58,7 +58,7 @@ exports.ApiRequests = class ApiRequests {
 
         const busStopIDs = [];
         busStopData.stopPoints.slice(0,numberOfStops).forEach(function(busStop) {
-            busStopIDs.push(busStop.children[0].id);
+            busStopIDs.push(busStop.id);
         });
         
         return busStopIDs;
