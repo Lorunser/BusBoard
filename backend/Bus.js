@@ -9,7 +9,8 @@ exports.Bus = class Bus{
         const translator = {
             "id": "id",
             "minutesToArrival": "timeToStation",
-            "number": "lineName"
+            "number": "lineName",
+            "destination": "destinationName"
         };
 
         for(let key in translator){
