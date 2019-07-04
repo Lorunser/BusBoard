@@ -36,6 +36,7 @@ exports.BusStop = class BusStop{
     printArrivals(){
         console.log("Arrivals for " + this.name);
         console.log("=========================");
+        
         for(const bus of this.nextBuses){
             console.log(bus.stringify());
         }
@@ -57,8 +58,8 @@ exports.BusStop = class BusStop{
         return busStop;
     }
 
-    static async closestToPostcode(postcode, withinRadius=1000, numStops = 2){
-        let ids = await ApiRequests.busStopsNearPostcode(postcode, withinRadius, numStops)
+    static async stopsClosestToPostcode(postcode, numberOfStops = 2, maxRadius = 10000, radiusIncrement = 200){
+        let ids = await ApiRequests.busStopsNearPostcode(postcode, numberOfStops, maxRadius, radiusIncrement)
         let promisedBusStops = [];
 
         for(let id of ids){

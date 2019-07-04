@@ -1,6 +1,12 @@
 
 exports.Bus = class Bus{
+
     constructor(jsonBus){
+        this.assignProps(jsonBus);
+        this.minutesToArrival = parseFloat(this.minutesToArrival) / 60;
+    }
+
+    assignProps(jsonBus){
         const translator = {
             "id": "id",
             "minutesToArrival": "timeToStation",
@@ -12,9 +18,6 @@ exports.Bus = class Bus{
             const value = jsonBus[apiKey];
             this[key] = value;
         }
-
-        //convert to mins
-        this.minutesToArrival = parseFloat(this.minutesToArrival) / 60;
     }
 
     stringify(){
