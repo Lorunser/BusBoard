@@ -22,6 +22,7 @@ exports.BusStop = class BusStop{
 
     assignNextBuses(jsonArrivals){
         this.nextBuses = [];
+        jsonArrivals = jsonArrivals.sort((a, b) => a.timeToStation - b.timeToStation);
 
         for(let i = 0; i < 5 && i < jsonArrivals.length; i++){
             const arrival = jsonArrivals[i];
