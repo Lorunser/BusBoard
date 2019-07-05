@@ -29,7 +29,10 @@ function submitPostcode() {
     
     xhttp.onload = function() {
         // Handle response here using e.g. xhttp.status, xhttp.response, xhttp.responseText
-        alert(xhttp.status);
+        if(xhttp.status == "404"){
+            alert("Invalid postcode. Try Again!");
+        }
+
         var jsonArray = JSON.parse(xhttp.response);
         var resultsText = createResultsHTML(jsonArray);
         document.getElementById("results").innerHTML = resultsText;
