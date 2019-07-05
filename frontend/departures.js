@@ -29,9 +29,8 @@ function submitPostcode() {
     
     xhttp.onload = function() {
         // Handle response here using e.g. xhttp.status, xhttp.response, xhttp.responseText
-        console.log(xhttp.response);
         var jsonArray = JSON.parse(xhttp.response);
-        var resultsText = createResultsHTML(xhttp.response);
+        var resultsText = createResultsHTML(jsonArray);
         document.getElementById("results").innerHTML = resultsText;
     }
     
