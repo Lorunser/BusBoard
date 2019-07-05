@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const BusStop = require('./backend/BusStop').BusStop;
+const BusStop = require('/backend/BusStop').BusStop;
 
 app.get('/test', (req, res) => res.send('Hello World!'));
 
