@@ -13,7 +13,6 @@ exports.ApiRequests = class ApiRequests {
             requestUrl = requestUrl + identifiers;
         }
 
-
         const jsonResponse = await axios.get(requestUrl);
         return jsonResponse.data;
     }
@@ -26,7 +25,7 @@ exports.ApiRequests = class ApiRequests {
 
     static async arrivalPredictions(busStopId){
         const requestUrl = stopPointURL + String(busStopId) + "/Arrivals";
-        return this.request(requestUrl)
+        return this.request(requestUrl);
     }
 
     //postCodes
@@ -41,6 +40,7 @@ exports.ApiRequests = class ApiRequests {
 
         return postcodeLocation;
     }
+    
     static async busStopsNearPostcode(postcode, numberOfStops = 2, maxRadius = 10000, radiusIncrement = 200){
         const postcodeLocation = await this.longLatFromPostcode(postcode);
         
