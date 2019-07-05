@@ -4,16 +4,17 @@ function stringify(bus) {
 }
 
 function createResultsHTML(busStopArray) {
-    var resultsText = '<ul class="list-group">';
+    var resultsText = '';
     
     for (var busStop of busStopArray) {
+        resultsText += '<div class="col-md-6"></div><ul class="list-group">';
         resultsText += '<li class="list-group-item active h3">' + busStop.name + '</li>';
         console.log(busStop);
         for (var bus of busStop.nextBuses) {
             var busDetails = stringify(bus);
             resultsText += '<li class="list-group-item list-group-item-action">' + busDetails +'</li>';
         }
-        resultsText += '</ul><br>';
+        resultsText += '</ul></div><br>';
     }
     return resultsText;
 }
