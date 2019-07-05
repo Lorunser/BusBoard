@@ -46,7 +46,7 @@ exports.ApiRequests = class ApiRequests {
             withinRadius += radiusIncrement;
 
             if (withinRadius > maxRadius) {
-                console.log("===Max radius exceeded before " + String(numberOfStops) + " found===");
+                alert("Max radius exceeded before " + String(numberOfStops) + " found");
                 break;
             }
             const argRadius   = "&radius=" + String(withinRadius);
