@@ -3,27 +3,10 @@ const Bus = require('./Bus').Bus;
 
 exports.BusStop = class BusStop{
     //sync constructor methods
-    constructor(id, jsonStop, jsonArrivals){
+    constructor(id, name, jsonArrivals){
         this.id = id;
-        this.assignProps(jsonStop);
+        this.name = name;
         this.assignNextBuses(jsonArrivals);
-    }
-
-    assignProps(jsonStop){
-        const translator = {
-            "name": "commonName"
-        };
-
-        for(let key in translator){
-            const apiKey = translator[key];
-            const value = jsonStop[apiKey];
-            this[key] = value;
-        }
-
-        //handle substops
-        if(jsonStop.hasOwnProperty('indicator')){
-            this.name = this.name + " " + jsonStop.indicator;
-        }
     }
 
     assignNextBuses(jsonArrivals){
@@ -49,26 +32,19 @@ exports.BusStop = class BusStop{
     }
 
     //async static generator methods
-    static async newFromId(id){
-        //begin requests
-        let jsonStop = ApiRequests.busStopFromId(id);
-        let jsonArrivals = ApiRequests.arrivalPredictions(id);
-
-        //wait for completion
-        jsonStop = await jsonStop;
-        jsonArrivals = await jsonArrivals;
-
-        //create object
-        let busStop = new this(id, jsonStop, jsonArrivals);
+    static async newFromIdName(stop){
+        let jsonArrivals = await ApiRequests.arrivalPredictions(stop.id);
+        let busStop = new this(stop.id, stop.name, jsonArrivals);
         return busStop;
     }
+
 
     static async stopsClosestToPostcode(postcode, numberOfStops = 6, maxRadius = 10000, radiusIncrement = 200){
         let ids = await ApiRequests.busStopsNearPostcode(postcode, numberOfStops, maxRadius, radiusIncrement)
         let promisedBusStops = [];
 
         for(let id of ids){
-            let busStop = this.newFromId(id);
+            let busStop = this.newFromIdName(id);
             promisedBusStops.push(busStop);
         }
 

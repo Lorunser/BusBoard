@@ -65,13 +65,16 @@ exports.ApiRequests = class ApiRequests {
             busStopCount = busStopData.stopPoints.length;
         }
 
-        const busStopIDs = [];
+        const busStops = [];
         busStopData.stopPoints.slice(0,numberOfStops).forEach(function(busStop) {
-            busStopIDs.push(busStop.id);
+            busStops.push({
+                id: busStop.id,
+                name: busStop.commonName + " - " + busStop.indicator
+            });
         });
         
         //return busStopData.stopPoints.slice(0,numberOfStops);
-        return busStopIDs;
+        return busStops;
     }
 
 }
