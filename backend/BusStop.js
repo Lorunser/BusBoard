@@ -39,7 +39,7 @@ exports.BusStop = class BusStop{
     }
 
 
-    static async stopsClosestToPostcode(postcode, numberOfStops = 6, maxRadius = 10000, radiusIncrement = 200){
+    static async stopsClosestToPostcode(postcode, numberOfStops = 2, maxRadius = 10000, radiusIncrement = 200){
         let ids = await ApiRequests.busStopsNearPostcode(postcode, numberOfStops, maxRadius, radiusIncrement)
         let promisedBusStops = [];
 
