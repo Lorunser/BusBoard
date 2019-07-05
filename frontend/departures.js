@@ -48,4 +48,12 @@ function submitPostcode() {
     }
     
     xhttp.send();
+
+    setTimeout(function(){
+        var postcode = document.forms.postcodeForm[0].value;
+        if (typeof postcode.length !== 'undefined') {
+            submitPostcode()
+        };
+     }, 5000);
 }
+
