@@ -4,16 +4,16 @@ function stringify(bus) {
 }
 
 function createResultsHTML(busStopArray) {
-    var resultsText = '<h2>Results</h2>';
+    var resultsText = '<ul class="list-group">';
     
     for (var busStop of busStopArray) {
-        resultsText += '<h3>' + busStop.name + '</h3><ul>';
+        resultsText += '<li class="list-group-item active h3">' + busStop.name + '</li>';
         console.log(busStop);
         for (var bus of busStop.nextBuses) {
             var busDetails = stringify(bus);
-            resultsText += '<li>' + busDetails +'</li>';
+            resultsText += '<li class="list-group-item list-group-item-action">' + busDetails +'</li>';
         }
-        resultsText += '</ul>';
+        resultsText += '</ul><br>';
     }
     return resultsText;
 }
