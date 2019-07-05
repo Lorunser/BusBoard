@@ -9,7 +9,7 @@ function createResultsHTML(busStopArray) {
     var resultsText = '';
     
     for (var busStop of busStopArray) {
-        resultsText += '<div class="col-md-6"></div><ul class="list-group">';
+        resultsText += '<div class="col-md-6"><ul class="list-group">';
         resultsText += '<li class="list-group-item active h3">' + busStop.name + '</li>';
         console.log(busStop);
         for (var bus of busStop.nextBuses) {
