@@ -1,0 +1,17 @@
+h1{
+    color: whitesmoke;
+}
+
+h2{
+    color: lightseagreen;
+    font-size: 30px;
+}
+
+h3{
+    color: purple;
+    font-size: 24px;
+}
+
+.list-group-item{
+    color: navy;
+}
