@@ -16,7 +16,7 @@ app.get('/departureBoards/:postcode', async (request, response) => {
 });
 
 app.use(express.static('frontend'));
-app.use('/test', express.static('test.html'));
+app.use('/test', express.static('frontend/test.html'));
 
 app.use('/', express.static('frontend/timetable.html'));
 app.use('/timetable', express.static('frontend/timetable.html'));
