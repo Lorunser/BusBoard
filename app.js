@@ -20,6 +20,7 @@ app.use('/test', express.static('frontend/test.html'));
 
 app.use('/', express.static('frontend/timetable.html'));
 app.use('/timetable', express.static('frontend/timetable.html'));
+app.use('/map', express.static('frontend/map.html'));
 app.use('/history', express.static('frontend/history.html'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

@@ -27,7 +27,9 @@ function createResultsHTML(busStopArray) {
     return resultsText;
 }
 
-
+function change_loc(postcode) {
+    document.getElementById('gmap_canvas').src = 'https://maps.google.com/maps?q=' + postcode + '&t=&z=13&ie=UTF8&iwloc=&output=embed';
+}
 
 function submitPostcode() {
     var xhttp = new XMLHttpRequest();
@@ -44,6 +46,7 @@ function submitPostcode() {
 
         var jsonArray = JSON.parse(xhttp.response);
         var resultsText = createResultsHTML(jsonArray);
+        change_loc(postcode);
         document.getElementById("results").innerHTML = resultsText;
     }
     
