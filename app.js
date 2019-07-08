@@ -3,8 +3,6 @@ const app = express()
 const port = 3000
 const BusStop = require('./backend/BusStop').BusStop;
 
-app.get('/test', (req, res) => res.send('Hello World!'));
-
 app.get('/departureBoards/:postcode', async (request, response) => {
     const postcode = request.params.postcode;
 
@@ -18,6 +16,10 @@ app.get('/departureBoards/:postcode', async (request, response) => {
 });
 
 app.use(express.static('frontend'));
+app.use('/test', express.static('test.html'));
+
+app.use('/', express.static('frontend/timetable.html'));
+app.use('/timetable', express.static('frontend/timetable.html'));
 app.use('/history', express.static('frontend/history.html'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
