@@ -1,17 +1,8 @@
 <head>
-    <link rel="import" href="/layout.html">
+    <link rel="import" href="layout.html">
 </head>
 
 <body id="body">
     <div id="nav-placeholder"></div>
     <H1>Test page</H1>
 </body>
-
-<script>
-    var template = document.querySelector('link[rel="import"]').import;
-
-    var nav = template.getElementById("nav-div");
-    var placeholder = document.getElementById("nav-placeholder");
-
-    placeholder.innerHTML = nav.innerHTML;
-</script>
