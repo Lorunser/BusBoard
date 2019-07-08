@@ -10,35 +10,38 @@
     <div id="nav-placeholder"></div>
 
     <div class="container jumbotron">
-        <div class="container row justify-content-md-center">
-            <form action="javascript:void(0)" onsubmit="submitPostcode();" id="postcodeForm" class="form-inline col-md-">
-                <input class="form-control mr-sm-2" type="text" name="postcode" placeholder="Postcode">
-                <button type="submit" class="btn btn-primary form-control">Submit</button>
-            </form>
-        </div>
-        <br>
-        <div id="results" class="container row">
-          <div class="col-md-6">
-            <ul class="list-group">
-                <li class="list-group-item active h3">Example stop 1</li>
-                <li class="list-group-item list-group-item-action">2 minutes: 123 to Example Street</li>
-                <li class="list-group-item list-group-item-action">3 minutes: 456 to Fantasy Land</li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul class="list-group">
-                <li class="list-group-item active h3">Example stop 1</li>
-                <li class="list-group-item list-group-item-action">2 minutes: 123 to Example Street</li>
-                <li class="list-group-item list-group-item-action">3 minutes: 456 to Fantasy Land</li>
-            </ul>
-          </div>
-          <div class="mapouter">
-            <div class="gmap_canvas">
-              <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=softwire&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-            </div>
-          <style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
-        </div>            
+      <div class="container row justify-content-md-center">
+          <form action="javascript:void(0)" onsubmit="submitPostcode();" id="postcodeForm" class="form-inline col-md-">
+              <input class="form-control mr-sm-2" type="text" name="postcode" placeholder="Postcode">
+              <button type="submit" class="btn btn-primary form-control">Submit</button>
+          </form>
       </div>
+      <br>
+      <div id="results" class="container row">
+        <div class="col-md-6">
+          <ul class="list-group">
+              <li class="list-group-item active h3">Example stop 1</li>
+              <li class="list-group-item list-group-item-action">2 minutes: 123 to Example Street</li>
+              <li class="list-group-item list-group-item-action">3 minutes: 456 to Fantasy Land</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group">
+              <li class="list-group-item active h3">Example stop 1</li>
+              <li class="list-group-item list-group-item-action">2 minutes: 123 to Example Street</li>
+              <li class="list-group-item list-group-item-action">3 minutes: 456 to Fantasy Land</li>
+          </ul>
+        </div>        
+      </div>
+      <br>
+      <div class="container row card mx-auto" style="width: 600px;">
+          <div class="card-header">
+              <p class="card-text">Here is a map</p>
+            </div>
+          <div id="gmap_canvas_frame" class="gmap_canvas">
+            <iframe width="600" height="500"  src="https://maps.google.com/maps?q=softwire&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+          </div>
+        </div> 
     </div>
   </body>
 </html>

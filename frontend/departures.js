@@ -28,7 +28,10 @@ function createResultsHTML(busStopArray) {
 }
 
 function change_loc(postcode) {
-    document.getElementById('gmap_canvas').src = 'https://maps.google.com/maps?q=' + postcode + '&t=&z=13&ie=UTF8&iwloc=&output=embed';
+    var pre_text  ='<iframe width="600" height="500"  src="https://maps.google.com/maps?q='
+    var post_text = '&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>'
+
+    document.getElementById("gmap_canvas_frame").innerHTML = pre_text + postcode + post_text;
 }
 
 function submitPostcode() {
@@ -57,6 +60,6 @@ function submitPostcode() {
         if (typeof postcode.length !== 'undefined') {
             submitPostcode()
         };
-     }, 5000);
+     }, 20000);
 }
 
